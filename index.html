@@ -1,104 +1,115 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Диаграмма предпочтений</title>
-    <link rel="shortcut icon" href="img/2.jpg" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #121212;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            color: white;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 80%;
-            max-width: 900px;
-        }
-        .chart-container {
-            width: 50%;
-            max-width: 400px;
-            background: #1E1E1E;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            transform: translateX(50px);
-            animation: fadeInRight 1s ease-in-out;
-        }
-        .text-container {
-            width: 40%;
-            transform: translateX(-50px);
-            animation: fadeInLeft 1s ease-in-out;
-        }
-        h2 {
-            margin-bottom: 20px;
-            color: #FFC107;
-        }
-        .text-container p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-100px); }
-            to { opacity: 1; transform: translateX(-50px); }
-        }
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(100px); }
-            to { opacity: 1; transform: translateX(50px); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Диаграмма предпочтений</title>
+  <link rel="shortcut icon" href="img/2.jpg" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #121212;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: white;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+      max-width: 900px;
+    }
+    .text-container {
+      width: 40%;
+      text-align: left;
+      animation: fadeInLeft 1s ease-in-out;
+    }
+    .chart-container {
+      width: 50%;
+      max-width: 400px;
+      background: #1E1E1E;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: fadeInRight 1s ease-in-out;
+    }
+    h2 {
+      margin-bottom: 15px;
+      color: #FFC107;
+    }
+    .text-container p {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .text-container {
+        width: 100%;
+      }
+      .chart-container {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="text-container">
-            <h2>Предпочтения пользователей</h2>
-            <p><strong>73%</strong> — нравится</p>
-            <p><strong>16%</strong> — не нравится</p>
-            <p><strong>11%</strong> — без разницы</p>
-        </div>
-        <div class="chart-container">
-            <canvas id="preferenceChart"></canvas>
-        </div>
+  <div class="container">
+    <div class="text-container">
+      <h2>Предпочтения пользователей</h2>
+      <p><strong>73%</strong> — нравится</p>
+      <p><strong>16%</strong> — не нравится</p>
+      <p><strong>11%</strong> — без разницы</p>
     </div>
+    <div class="chart-container">
+      <canvas id="preferenceChart"></canvas>
+    </div>
+  </div>
 
-    <script>
-        const ctx = document.getElementById('preferenceChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Нравится', 'Не нравится', 'Без разницы'],
-                datasets: [{
-                    data: [73, 16, 11],
-                    backgroundColor: ['#66BB6A', '#EF5350', '#FFCA28'],
-                    borderWidth: 2,
-                    hoverOffset: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: 'white',
-                            font: {
-                                size: 14
-                            }
-                        }
-                    }
-                }
+  <script>
+    const ctx = document.getElementById('preferenceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Нравится', 'Не нравится', 'Без разницы'],
+        datasets: [{
+          data: [73, 16, 11],
+          backgroundColor: ['#66BB6A', '#EF5350', '#FFCA28'],
+          borderWidth: 2,
+          hoverOffset: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              color: 'white',
+              font: {
+                size: 14
+              }
             }
-        });
-    </script>
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
