@@ -9,13 +9,15 @@
   <style>
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       background: #121212;
       font-family: 'Poppins', sans-serif;
       margin: 0;
       color: white;
+      padding: 20px 0;
     }
     .container {
       display: flex;
@@ -23,6 +25,7 @@
       align-items: center;
       width: 80%;
       max-width: 900px;
+      margin-bottom: 50px;
     }
     .text-container {
       width: 40%;
@@ -47,6 +50,50 @@
       font-size: 18px;
       margin: 5px 0;
     }
+    .reviews-container {
+      width: 80%;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      background: #1E1E1E;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    .review-rating {
+      color: #FFC107;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .review-text {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .review-date {
+      font-size: 12px;
+      color: #999;
+      margin-top: 10px;
+      text-align: right;
+    }
+    .qr-icon {
+      margin-right: 5px;
+      color: #FFC107;
+    }
     @keyframes fadeInLeft {
       from { opacity: 0; transform: translateX(-50px); }
       to { opacity: 1; transform: translateX(0); }
@@ -54,6 +101,10 @@
     @keyframes fadeInRight {
       from { opacity: 0; transform: translateX(50px); }
       to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     @media (max-width: 768px) {
       .container {
@@ -65,6 +116,9 @@
       }
       .chart-container {
         width: 100%;
+      }
+      .reviews-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -79,6 +133,59 @@
     </div>
     <div class="chart-container">
       <canvas id="preferenceChart"></canvas>
+    </div>
+  </div>
+
+  <div class="reviews-container">
+    <div class="reviews-header">
+      <h2>Отзывы о заказе через QR-код и Telegram</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-rating">★★★★★</div>
+        <div class="review-text">Очень удобно! Отсканировал QR-код, выбрал блюда в боте и через 15 минут уже принесли заказ. Никакого ожидания официанта.</div>
+        <div class="review-date">18.02.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★★★</div>
+        <div class="review-text">Понятный интерфейс бота, легко разобрался.</div>
+        <div class="review-date">15.02.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★★☆</div>
+        <div class="review-text">Использовал QR-код в кафе впервые, немного волновался, но всё оказалось проще простого. Официант подошёл только чтобы принести заказ.</div>
+        <div class="review-date">12.02.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★★☆</div>
+        <div class="review-text">Очень экономит время! Не нужно ждать, когда официант принесёт меню или подойдёт принять заказ. Минус только в том, что нельзя задать вопрос о блюде.</div>
+        <div class="review-date">08.02.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★★★</div>
+        <div class="review-text">Заказ через QR и телеграм-бот отличное решение для обеденного перерыва.</div>
+        <div class="review-date">02.02.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★☆☆</div>
+        <div class="review-text">Немного сложно было найти в боте опцию изменения заказа, но в целом удобно. Понравилось, что можно оставить комментарий к блюду.</div>
+        <div class="review-date">28.01.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★★★</div>
+        <div class="review-text">Интересный сервис. Удобно, что можно отсканировать QR-код и сразу попасть в бота в Telegram, чтобы посмотреть меню и сделать заказ. Всё прошло без проблем, хотя немного не привык к такому формату.</div>
+        <div class="review-date">25.01.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★☆☆</div>
+        <div class="review-text">Иногда было немного непонятно, что делает бот, но в целом идея отличная! Было бы здорово, если бы еще добавили возможность оплаты онлайн.</div>
+        <div class="review-date">20.01.2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-rating">★★★★★</div>
+        <div class="review-text">Хорошая идея для упрощения процесса заказа. Сканируешь QR-код, переходишь в бота и взаимодействуешь с меню   в Telegram. Немного непривычно вначале, но всё работает корректно.</div>
+        <div class="review-date">15.01.2025</div>
+      </div>
     </div>
   </div>
 
